@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nari.electromart.dto.RegisterRequest;
 import com.nari.electromart.service.UserService;
+import com.nari.electromart.dto.LoginRequest;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,5 +24,12 @@ public class AuthController {
             @RequestBody RegisterRequest request) {
 
         return userService.registerUser(request);
+    }
+    
+    @PostMapping("/login")
+    public String loginUser(
+            @RequestBody LoginRequest request) {
+
+        return userService.loginUser(request);
     }
 }
