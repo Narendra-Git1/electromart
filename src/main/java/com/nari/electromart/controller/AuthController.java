@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nari.electromart.dto.LoginRequest;
+import com.nari.electromart.dto.LoginResponse;
 import com.nari.electromart.dto.RegisterRequest;
 import com.nari.electromart.service.UserService;
-import com.nari.electromart.dto.LoginRequest;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -25,9 +26,9 @@ public class AuthController {
 
         return userService.registerUser(request);
     }
-    
+
     @PostMapping("/login")
-    public String loginUser(
+    public LoginResponse loginUser(
             @RequestBody LoginRequest request) {
 
         return userService.loginUser(request);
