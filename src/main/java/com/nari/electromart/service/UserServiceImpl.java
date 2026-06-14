@@ -38,7 +38,9 @@ public class UserServiceImpl implements UserService {
 
         user.setName(request.getName());
         user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPassword(
+                passwordEncoder.encode(
+                        request.getPassword()));
         user.setRole("USER");
 
         userRepository.save(user);
@@ -65,7 +67,10 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Invalid Password");
         }
 
-        String token = jwtUtil.generateToken(user.getEmail());
+        String token =
+                jwtUtil.generateToken(
+                        user.getEmail(),
+                        user.getRole());
 
         return new LoginResponse(token);
     }
