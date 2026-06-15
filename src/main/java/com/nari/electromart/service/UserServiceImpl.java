@@ -74,4 +74,31 @@ public class UserServiceImpl implements UserService {
 
         return new LoginResponse(token);
     }
+    
+    @Override
+    public User getUserById(Long id) {
+
+        return userRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "User Not Found"));
+    }
+
+    @Override
+    public User updateUser(
+            Long id,
+            User user) {
+
+        User existingUser =
+                getUserById(id);
+
+        existingUser.setName(
+                user.getName());
+
+        existingUser.setEmail(
+                user.getEmail());
+
+        return userRepository.save(
+                existingUser);
+    }
 }
